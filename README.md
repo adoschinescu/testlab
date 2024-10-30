@@ -1,4 +1,4 @@
-# Pancake Lab
+# Dojo Lab
 
 ## Description
 Our Coding Dojo uses Pancake Lab, a pancake shop software solution for ordering pancakes.
