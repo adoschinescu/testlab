@@ -36,3 +36,9 @@ The Sensei has put forth some conditions:
 
 
 Start now your assignment and save the Dojo.
+
+---
+
+The UML diagram flow:
+
+![DojoLab UML flow](DojoLab_UML_flow.png "DojoLab UML flow")
