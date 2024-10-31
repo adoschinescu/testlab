@@ -12,12 +12,10 @@ class DefaultDestinationValidatorTest {
     @Test
     void GivenBuildingDoesNotExist_WhenValidatingBuilding_ThenValidationFails_Test() {
         Assertions.assertThrows(BuildingNotFoundException.class,
-                () -> destinationValidator.validate(39, 2),
-                "Building not found");
+                () -> destinationValidator.validate(39, 2));
 
         Assertions.assertThrows(BuildingNotFoundException.class,
-                () -> destinationValidator.validate(101, 2),
-                "Building not found");
+                () -> destinationValidator.validate(101, 2));
     }
 
     @Test
@@ -30,16 +28,13 @@ class DefaultDestinationValidatorTest {
     @Test
     void GivenRoomDoesNotExist_WhenValidatingRoom_ThenValidationFails_Test() {
         Assertions.assertThrows(RoomNotFoundException.class,
-                () -> destinationValidator.validate(50, 13),
-                "Room not found");
+                () -> destinationValidator.validate(50, 13));
 
         Assertions.assertThrows(RoomNotFoundException.class,
-                () -> destinationValidator.validate(40, -1),
-                "Room not found");
+                () -> destinationValidator.validate(40, -1));
 
         Assertions.assertThrows(RoomNotFoundException.class,
-                () -> destinationValidator.validate(40, 101),
-                "Room not found");
+                () -> destinationValidator.validate(40, 101));
     }
 
     @Test

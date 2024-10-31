@@ -17,7 +17,7 @@ class CancelOrderServiceTest {
     private final CancelOrderUseCase cancelOrderUseCase = new CancelOrderService(orders);
 
     @Test
-    void GivenOrderExists_WhenCancelOrder_ThenOrderStatusIsChangedAndIsRemovedFromDatabase_Test() {
+    void GivenOrderExists_WhenCancelOrder_ThenOrderStatusIsSuccessfullyChangedAndRemovedFromDatabase_Test() {
         var order = createOrderUseCase.createOrder(85, 22);
 
         var dojoPancake1 = new DojoPancake(List.of(Ingredient.DARK_CHOCOLATE, Ingredient.HAZELNUTS));

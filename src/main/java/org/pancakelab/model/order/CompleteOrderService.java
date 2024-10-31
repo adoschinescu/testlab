@@ -22,6 +22,9 @@ public final class CompleteOrderService implements CompleteOrderUseCase {
         if (order.getStatus() != Order.Status.CREATED) {
             throw new CompleteOrderException("Cannot complete order with id %s and status %s".formatted(orderId, order.getStatus()));
         }
+        if (order.getPancakes().isEmpty()) {
+            throw new CompleteOrderException("Cannot complete order with id %s and no pancakes".formatted(orderId));
+        }
         orders.updateStatus(order.getId(), Order.Status.COMPLETED);
         return order;
     }

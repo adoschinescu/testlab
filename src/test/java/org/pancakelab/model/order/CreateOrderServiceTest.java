@@ -17,7 +17,7 @@ class CreateOrderServiceTest {
     private final CreateOrderUseCase createOrderUseCase = new CreateOrderService(orders);
 
     @Test
-    void GivenOrderExists_WhenCreateOrder_ThenOrderIsCreatedAndIsAddedToDatabase_Test() {
+    void GivenOrderExists_WhenCreateOrder_ThenOrderIsCreatedAndAddedToDatabase_Test() {
         var order = createOrderUseCase.createOrder(85, 22);
 
         Assertions.assertSame(Order.Status.CREATED, order.getStatus());

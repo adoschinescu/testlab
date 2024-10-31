@@ -42,7 +42,23 @@ class CompleteOrderServiceTest {
     @Test
     void GivenOrderExists_WhenCompleteOrderWithInvalidStatus_ThenOperationFails_Test() {
         var order = createOrderUseCase.createOrder(85, 22);
+
+        var dojoPancake1 = new DojoPancake(List.of(Ingredient.DARK_CHOCOLATE, Ingredient.HAZELNUTS));
+        var dojoPancake2 = new DojoPancake(List.of(Ingredient.MAPLE_SYRUP));
+        var dojoPancake3 = new DojoPancake(List.of(Ingredient.WHIPPED_CREAM, Ingredient.VANILLA));
+        createOrderUseCase.addPancake(order.getId(), dojoPancake1);
+        createOrderUseCase.addPancake(order.getId(), dojoPancake2);
+        createOrderUseCase.addPancake(order.getId(), dojoPancake3);
+
         order.setStatus(Order.Status.COMPLETED);
+
+        Assertions.assertThrows(CompleteOrderException.class,
+                () -> completeOrderUseCase.completeOrder(order.getId()));
+    }
+
+    @Test
+    void GivenOrderExists_WhenCompleteOrderWithNoPancakes_ThenOperationFails_Test() {
+        var order = createOrderUseCase.createOrder(85, 22);
 
         Assertions.assertThrows(CompleteOrderException.class,
                 () -> completeOrderUseCase.completeOrder(order.getId()));

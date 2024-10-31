@@ -1,6 +1,5 @@
 package org.pancakelab.service;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -15,8 +14,6 @@ import org.pancakelab.persistence.ConcurrentOrderStore;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -29,9 +26,6 @@ public class PancakeServiceTest {
     private final ConcurrentOrderStore concurrentOrders = new ConcurrentOrderStore();
     private final PancakeService pancakeService = new PancakeService(concurrentOrders);
     private Order order;
-    private ExecutorService disciplesExecutorService;
-    private ExecutorService senseiExecutorService;
-    private ExecutorService deliveryExecutorService;
 
     private final static String DARK_CHOCOLATE_PANCAKE_DESCRIPTION = "Delicious Pancake with Dark chocolate!";
     private final static String MILK_CHOCOLATE_PANCAKE_DESCRIPTION = "Delicious Pancake with Milk chocolate!";
@@ -41,19 +35,6 @@ public class PancakeServiceTest {
     @BeforeEach
     public void setUp() {
         order = pancakeService.createOrder(85, 22);
-
-        disciplesExecutorService = Executors.newFixedThreadPool(3);
-        deliveryExecutorService = Executors.newFixedThreadPool(3);
-        senseiExecutorService = Executors.newSingleThreadExecutor();
-
-    }
-
-    @AfterEach
-    public void tearDown() {
-        order = null;
-        senseiExecutorService.shutdownNow();
-        disciplesExecutorService.shutdownNow();
-        deliveryExecutorService.shutdownNow();
     }
 
     @Test
@@ -129,6 +110,7 @@ public class PancakeServiceTest {
     @org.junit.jupiter.api.Order(40)
     public void GivenOrderExists_WhenCompletingOrder_ThenOrderCompleted_Test() {
         // setup
+        addPancakes();
 
         // exercise
         pancakeService.completeOrder(order.getId());
@@ -165,7 +147,7 @@ public class PancakeServiceTest {
     public void GivenOrderExists_WhenDeliveringOrder_ThenCorrectOrderReturnedAndOrderRemovedFromTheDatabase_Test() {
         // setup
         concurrentOrders.updateStatus(order.getId(), Order.Status.PREPARED);
-        List<String> pancakesToDeliver = pancakeService.viewOrder(order.getId());
+        pancakeService.viewOrder(order.getId());
 
         // exercise
         pancakeService.deliverOrder(order.getId());
