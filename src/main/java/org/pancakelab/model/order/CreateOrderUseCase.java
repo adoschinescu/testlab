@@ -1,6 +1,5 @@
 package org.pancakelab.model.order;
 
-import org.pancakelab.model.pancakes.PancakeRecipe;
 import org.pancakelab.model.pancakes.Recipe;
 
 import java.util.UUID;
@@ -10,9 +9,9 @@ public interface CreateOrderUseCase {
 
     Order createOrder(int building, int room);
 
-    Order addPancake(UUID orderId, PancakeRecipe pancake);
+    Order addPancake(UUID orderId, Recipe pancake);
 
-    void removePancake(UUID orderId, PancakeRecipe pancake);
+    void removePancake(UUID orderId, Recipe pancake);
 
     void removePancake(UUID orderId, Predicate<Recipe> filter);
 }

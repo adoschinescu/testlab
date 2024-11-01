@@ -1,7 +1,6 @@
 package org.pancakelab.persistence;
 
 import org.pancakelab.model.order.Order;
-import org.pancakelab.model.pancakes.PancakeRecipe;
 import org.pancakelab.model.pancakes.Recipe;
 
 import java.util.List;
@@ -15,9 +14,9 @@ public interface Orders {
 
     void updateStatus(UUID orderId, Order.Status status);
 
-    Order addPancake(UUID orderId, PancakeRecipe pancake);
+    Order addPancake(UUID orderId, Recipe pancake);
 
-    void removePancake(UUID orderId, PancakeRecipe pancake);
+    void removePancake(UUID orderId, Recipe pancake);
 
     void removePancake(UUID orderId, Predicate<Recipe> filter);
 

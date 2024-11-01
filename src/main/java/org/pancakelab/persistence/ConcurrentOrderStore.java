@@ -2,7 +2,6 @@ package org.pancakelab.persistence;
 
 import org.pancakelab.model.order.Order;
 import org.pancakelab.model.order.exception.OrderNotFoundException;
-import org.pancakelab.model.pancakes.PancakeRecipe;
 import org.pancakelab.model.pancakes.Recipe;
 
 import java.util.List;
@@ -27,14 +26,14 @@ public class ConcurrentOrderStore implements Orders {
     }
 
     @Override
-    public synchronized Order addPancake(UUID orderId, PancakeRecipe pancake) {
+    public synchronized Order addPancake(UUID orderId, Recipe pancake) {
         Order order = find(orderId).orElseThrow(() -> new OrderNotFoundException("Order not found"));
         order.addPancake(pancake);
         return order;
     }
 
     @Override
-    public synchronized void removePancake(UUID orderId, PancakeRecipe pancake) {
+    public synchronized void removePancake(UUID orderId, Recipe pancake) {
         Order order = find(orderId).orElseThrow(() -> new OrderNotFoundException("Order not found"));
         order.removePancake(pancake);
     }

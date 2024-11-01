@@ -34,7 +34,7 @@ public final class PancakeFactory {
     private PancakeFactory() {
     }
 
-    private static PancakeRecipe createPancakeFromMenu(String name) {
+    private static Recipe createPancakeFromMenu(String name) {
         var ingredients = PANCAKES_MENU.get(name);
         if (ingredients == null) {
             throw new PancakeNotFoundException("Pancake " + name + " not found");
@@ -42,27 +42,27 @@ public final class PancakeFactory {
         return new DojoPancake(ingredients);
     }
 
-    public static PancakeRecipe createDarkChocolatePancake() {
+    public static Recipe createDarkChocolatePancake() {
         return createPancakeFromMenu(DARK_CHOCOLATE_PANCAKE);
     }
 
-    public static PancakeRecipe createDarkChocolateWhippedCreamHazelnutsPancake() {
+    public static Recipe createDarkChocolateWhippedCreamHazelnutsPancake() {
         return createPancakeFromMenu(DARK_CHOCOLATE_WHIPPED_CREAM_HAZELNUTS_PANCAKE);
     }
 
-    public static PancakeRecipe createDarkChocolateWhippedCreamPancake() {
+    public static Recipe createDarkChocolateWhippedCreamPancake() {
         return createPancakeFromMenu(DARK_CHOCOLATE_WHIPPED_CREAM_PANCAKE);
     }
 
-    public static PancakeRecipe createMilkChocolateHazelnutsPancake() {
+    public static Recipe createMilkChocolateHazelnutsPancake() {
         return createPancakeFromMenu(MILK_CHOCOLATE_HAZELNUTS_PANCAKE);
     }
 
-    public static PancakeRecipe createMilkChocolatePancake() {
+    public static Recipe createMilkChocolatePancake() {
         return createPancakeFromMenu(MILK_CHOCOLATE_PANCAKE);
     }
 
-    public static PancakeRecipe createCustomPancake(List<Ingredient> ingredients) {
+    public static Recipe createCustomPancake(List<Ingredient> ingredients) {
         return new DojoPancake(ingredients);
     }
 }

@@ -17,7 +17,7 @@ public final class CompleteOrderService implements CompleteOrderUseCase {
     }
 
     @Override
-    public synchronized Order completeOrder(UUID orderId) {
+    public Order completeOrder(UUID orderId) {
         var order = orders.find(orderId).orElseThrow(() -> new OrderNotFoundException("Order not found"));
         if (order.getStatus() != Order.Status.CREATED) {
             throw new CompleteOrderException("Cannot complete order with id %s and status %s".formatted(orderId, order.getStatus()));

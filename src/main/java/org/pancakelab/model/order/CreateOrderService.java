@@ -1,7 +1,6 @@
 package org.pancakelab.model.order;
 
 import org.pancakelab.model.order.validation.DefaultDestinationValidator;
-import org.pancakelab.model.pancakes.PancakeRecipe;
 import org.pancakelab.model.pancakes.Recipe;
 import org.pancakelab.persistence.Orders;
 
@@ -29,12 +28,12 @@ public final class CreateOrderService implements CreateOrderUseCase {
     }
 
     @Override
-    public Order addPancake(UUID orderId, PancakeRecipe pancake) {
+    public Order addPancake(UUID orderId, Recipe pancake) {
         return orders.addPancake(orderId, pancake);
     }
 
     @Override
-    public void removePancake(UUID orderId, PancakeRecipe pancake) {
+    public void removePancake(UUID orderId, Recipe pancake) {
         orders.removePancake(orderId, pancake);
     }
 

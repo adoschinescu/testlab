@@ -13,7 +13,6 @@ import org.pancakelab.model.order.PrepareOrderUseCase;
 import org.pancakelab.model.order.exception.OrderNotFoundException;
 import org.pancakelab.model.pancakes.Ingredient;
 import org.pancakelab.model.pancakes.PancakeFactory;
-import org.pancakelab.model.pancakes.PancakeRecipe;
 import org.pancakelab.model.pancakes.Recipe;
 import org.pancakelab.persistence.Orders;
 
@@ -99,7 +98,7 @@ public class PancakeService {
                 .toList();
     }
 
-    public void addPancake(UUID orderId, PancakeRecipe pancake) {
+    public void addPancake(UUID orderId, Recipe pancake) {
         var order = createOrderUseCase.addPancake(orderId, pancake);
 
         OrderLog.logAddPancake(order, pancake.description());

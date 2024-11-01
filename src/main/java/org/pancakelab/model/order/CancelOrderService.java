@@ -17,7 +17,7 @@ public final class CancelOrderService implements CancelOrderUseCase {
     }
 
     @Override
-    public synchronized Order cancelOrder(UUID orderId) {
+    public Order cancelOrder(UUID orderId) {
         var order = orders.find(orderId).orElseThrow(() -> new OrderNotFoundException("Order not found"));
         if (order.getStatus() != Order.Status.CREATED) {
             throw new CancelOrderException("Cannot cancel order with id %s and status %s".formatted(orderId, order.getStatus()));

@@ -1,6 +1,5 @@
 package org.pancakelab.model.order;
 
-import org.pancakelab.model.pancakes.PancakeRecipe;
 import org.pancakelab.model.pancakes.Recipe;
 
 import java.util.Collections;
@@ -46,11 +45,11 @@ public final class Order {
         this.status = Objects.requireNonNull(status);
     }
 
-    public void addPancake(PancakeRecipe pancake) {
+    public void addPancake(Recipe pancake) {
         pancakes.add(pancake);
     }
 
-    public void removePancake(PancakeRecipe pancake) {
+    public void removePancake(Recipe pancake) {
         pancakes.removeIf(pancakeRecipe -> pancake.description().equals(pancakeRecipe.description()));
     }
 
